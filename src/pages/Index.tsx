@@ -1,14 +1,40 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import React from 'react';
+import BackgroundSection from '../components/layout/BackgroundSection';
+import LoginForm from '../components/LoginPage/LoginForm';
 
-const Index = () => {
+/**
+ * IndexPage serves as the main login page for the application.
+ * It arranges the BackgroundSection (decorative left panel, visible on larger screens)
+ * and the LoginForm (authentication form) in a responsive layout.
+ */
+const IndexPage: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="flex min-h-screen w-full items-stretch bg-background">
+      {/* 
+        BackgroundSection:
+        - Displays branding and abstract graphics.
+        - Is hidden on screens smaller than 'lg' (as per its own Tailwind classes: 'hidden lg:flex').
+        - Has 'flex-1' within its own definition, allowing it to take available space on 'lg' screens.
+      */}
+      <BackgroundSection />
+
+      {/* 
+        Main content area for the LoginForm:
+        - Takes up the remaining flexible space ('flex-1').
+        - On small screens (when BackgroundSection is hidden), this area will occupy the full width.
+        - Centers the LoginForm vertically and horizontally using flexbox properties.
+        - Padding is applied for spacing around the LoginForm.
+      */}
+      <main className="flex flex-1 flex-col justify-center items-center p-4 sm:p-6 md:p-8">
+        {/* 
+          LoginForm:
+          - Contains all input fields, buttons, and links for user authentication.
+          - Has a fixed width (w-[400px]) and styling defined within its own component.
+        */}
+        <LoginForm />
+      </main>
     </div>
   );
 };
 
-export default Index;
+export default IndexPage;
